@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material de Estudio</title>
+    <link rel="stylesheet" href="CSS/material-estudio.css">
+</head>
+<body>
+
+    <nav class="menu-navegacion">
+        <p><strong>Elige el área la cual quieras conocer </strong></p>
+        <ul>
+            <li><a href="#fundamento-aritmetica">Aritmética</a></li>
+            <li><a href="#fundamento-logica">Lógica Booleana</a></li>
+            <li><a href="#fundamento-conjuntos">Teoría de Conjuntos</a></li>
+            <li><a href="#fundamento-algoritmos">Algoritmos</a></li>
+            <li><a href="#fundamento-acumuladores">Totales y IVA</a></li>
+        </ul>
+    </nav>
+
+    <h1>Material de estudio del Simulador de Facturación</h1>
+
+    <section id="fundamento-aritmetica">
+        <h2>Aritmética Comercial y Proporcionalidad</h2>
+        <p>¿Qué explica?: Cómo calcula el sistema los importes en base</p>
+        <p>a la cantidad de servicios que el usuario solicita.</p>
+
+        <div>
+            Fórmula:
+            precioTotal = precioUnitario x Cantidad
+        </div>
+
+        <div>
+            <input type="number" placeholder="precioUnitario" id="precioUnitario">
+            <br>
+            <input type="number" placeholder="cantidad" id="cantidad">
+            <br>
+            <button onclick="calcularPrecioTotal()">Calcular</button>
+            <br>
+            <span id="mensaje1"></span>
+        </div>
+    </section>
+
+    <script src="JS/material-estudio.js"></script>
+</body>
+</html>
