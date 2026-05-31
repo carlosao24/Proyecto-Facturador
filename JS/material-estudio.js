@@ -8,5 +8,5 @@ function calcularPrecioTotal(){
     let precioTotal = precioUnitario * cantidad;
 
     // Mostramos el resultado en la pantalla dentro del espacio con id 'mensaje1'
-    document.getElementById("mensaje1").innerHTML = "precioTotal: " + precioTotal;
+    document.getElementById("mensajeAritmetica").innerHTML = "precioTotal: " + precioTotal;
 }
