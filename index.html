@@ -17,7 +17,7 @@
             <li><a href="#elCliente">El Cliente</a></li>
             <li><a href="#facturaElectronica">Factura Electrónica</a></li>
             <li><a href="#subTotal">SubTotal</a></li>
-            <li><a href="#"></a></li>
+            <li><a href="#valorIVA">IVA</a></li>
         </ul>
     </nav>
 
@@ -85,6 +85,30 @@
             <button onclick="calcularSubtotal()">Calcular</button>
             <br>
             <span id="mensajeSubtotal">SubTotal:</span>
+        </div>
+    </section>
+
+    <section id="valorIVA">
+        <h2>El IVA (Impuesto al Valor Agregado)</h2>
+        <p>¿Por qué se usa, cómo se aplica en un sistema y cuál es su fórmula?</p>
+        <p>Por qué se usa: Es un impuesto indirecto sobre el consumo que e</p>
+        <p>Estado exige y que los negocios deben retener para luego declararlo.</p>
+        <p>Cómo se usa: Se aplica un porcentaje fijo (por ejemplo, el 15% o el</p>
+        <p>12% según la normativa vigente) sobre el Subtotal que está grabado</p>
+        <p>con este impuesto. Cabe destacar que algunos productos pueden tener tarifa 0%.</p>
+        <div>
+            Fórmulas: 
+            valorIVA = (subTotal*iva)/100
+        </div>
+        <div>
+            <h3>IVA: 15%</h3>
+            <br>
+            <input type="number" placeholder="subTotal" id="idSubTotal">
+            <br>
+            <button onclick="calcularIVA()">Calcular IVA</button>
+            <br>
+            <span id="mensajeIVA"></span>
+            <span id="mensajeTotal"></span>
         </div>
     </section>
     <script src="JS/material-estudio.js"></script>
