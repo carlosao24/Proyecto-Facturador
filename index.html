@@ -18,6 +18,7 @@
             <li><a href="#facturaElectronica">Factura Electrónica</a></li>
             <li><a href="#subTotal">SubTotal</a></li>
             <li><a href="#valorIVA">IVA</a></li>
+            <li><a href="#elTotal">El Total</a></li>
         </ul>
     </nav>
 
@@ -97,7 +98,7 @@
         <p>12% según la normativa vigente) sobre el Subtotal que está grabado</p>
         <p>con este impuesto. Cabe destacar que algunos productos pueden tener tarifa 0%.</p>
         <div>
-            Fórmulas: 
+            Fórmulas:
             valorIVA = (subTotal*iva)/100
         </div>
         <div>
@@ -110,6 +111,26 @@
             <span id="mensajeIVA"></span>
         </div>
     </section>
+
+    <section id="elTotal">
+        <h2>El Total</h2>
+        <p>Por qué se usa: Es el monto final definitivo que el cliente debe pagar y el negocio debe recaudar.</p>
+        <p>Cierra el ciclo financiero de la transacción.</p>
+        <p>Cómo se usa: Se calcula de forma automática al final de la factura y determina</p>
+        <p>el monto que se enviará a las pasarelas de pago o el efectivo que se debe recibir en caja.</p>
+        <div>
+            Fórmula:
+            total = subTotal + valorIVA
+        </div>
+        <div>
+            <input type="number" placeholder="subTotal" id="idSumaTotal">
+            <br>
+            <button onclick="calcularTotal()">Calcular Total</button>
+            <br>
+            <span id="mensajeTotal"></span>
+        </div>
+    </section>
+
     <script src="JS/material-estudio.js"></script>
     <script src="JS/utilitarios.js"></script>
 </body>

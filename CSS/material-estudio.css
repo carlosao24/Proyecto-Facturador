@@ -228,3 +228,16 @@ h3 {
     font-weight: 600;
     margin-bottom: 8px;
 }
+
+/* ==========================================================================
+   MENSAJES DE RESPUESTA: Estilo para las alertas de texto dinámicas (Spans)
+   ========================================================================== */
+span[id^="mensaje"] {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #059669;
+    /* Color verde amigable que indica éxito o respuesta del sistema */
+    margin-top: 4px;
+    display: inline-block;
+    /* Permite aplicar márgenes de manera correcta */
+}
