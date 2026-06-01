@@ -1,13 +1,13 @@
-// Función para calcular el precio total multiplicando precio por cantidad
-function calcularPrecioTotal() {
+// Función para calcular el subtotal multiplicando precio por cantidad
+function calcularSubtotal() {
     // Guardamos los valores que el usuario escribió en los cuadros de texto
     let precioUnitario = recuperarFloat("precioUnitario");
     let cantidad = recuperarInt("cantidad");
 
     // Hacemos la operación matemática
-    let precioTotal = precioUnitario * cantidad;
+    let subtotal = precioUnitario * cantidad;
 
-    // Mostramos el resultado en la pantalla dentro del espacio con id 'mensaje1'
-    document.getElementById("mensajeProducto").innerHTML = "precioTotal: " + precioTotal.toFixed(2);
+    // Mostramos el resultado en la pantalla dentro del espacio con id 'mensajeSubtotal'
+    document.getElementById("mensajeSubtotal").innerHTML = "Subtotal: " + subtotal.toFixed(2);
 }
 

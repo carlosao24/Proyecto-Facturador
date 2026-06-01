@@ -16,7 +16,7 @@
             <li><a href="#elProducto">El Producto</a></li>
             <li><a href="#elCliente">El Cliente</a></li>
             <li><a href="#facturaElectronica">Factura Electrónica</a></li>
-            <li><a href="#"></a></li>
+            <li><a href="#subTotal">SubTotal</a></li>
             <li><a href="#"></a></li>
         </ul>
     </nav>
@@ -32,20 +32,6 @@
         <p>(manualmente o mediante código de barras), lo que arrastra</p>
         <p>automáticamente su nombre y su Precio Unitario al detalle de la venta.</p>
 
-        <div>
-            Fórmula:
-            valorProducto = cantidad x precioUnitario
-        </div>
-
-        <div>
-            <input type="number" placeholder="precioUnitario" id="precioUnitario">
-            <br>
-            <input type="number" placeholder="cantidad" id="cantidad">
-            <br>
-            <button onclick="calcularPrecioTotal()">Calcular</button>
-            <br>
-            <span id="mensajeProducto"></span>
-        </div>
     </section>
 
     <section id="elCliente">
@@ -74,12 +60,33 @@
         <p>su autorización, notificando también al cliente por correo.</p>
         <div>
             Formulas:
-            Factura Electrònica = Datos del Emisor + 
-            Datos del cliente + Detalle de productos + 
+            Factura Electrònica = Datos del Emisor +
+            Datos del cliente + Detalle de productos +
             Totales Impuestos
         </div>
     </section>
 
+    <section id="subTotal">
+        <h2>El Subtotal</h2>
+        <p>Por qué se usa: Representa el valor bruto de la venta antes de aplicar impuestos (como el IVA) o descuentos.
+        </p>
+        <p>Es la base económica real sobre la cual se calcula la carga impositiva.</p>
+        <p>Cómo se usa: El sistema suma de manera interna el "Valor de Producto"</p>
+        <p>de cada uno de los ítems agregados al carrito o detalle de la compra.</p>
+        <div>
+            Fórmula:
+            subtotal = cantidad x precioUnitario
+        </div>
+        <div>
+            <input type="number" placeholder="precioUnitario" id="precioUnitario">
+            <br>
+            <input type="number" placeholder="cantidad" id="cantidad">
+            <br>
+            <button onclick="calcularSubtotal()">Calcular</button>
+            <br>
+            <span id="mensajeSubtotal">SubTotal:</span>
+        </div>
+    </section>
     <script src="JS/material-estudio.js"></script>
     <script src="JS/utilitarios.js"></script>
 </body>

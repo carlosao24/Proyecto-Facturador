@@ -192,15 +192,19 @@ input:focus {
    BOTONES: Diseño de los botones de acción de la interfaz
    ========================================================================== */
 button {
-    width: max-content; /* El botón solo mide lo que mide su texto por dentro */
+    width: max-content;
+    /* El botón solo mide lo que mide su texto por dentro */
     padding: 10px 24px;
-    background-color: #4f46e5; /* Fondo morado/azul */
-    color: #ffffff;            /* Texto blanco */
+    background-color: #4f46e5;
+    /* Fondo morado/azul */
+    color: #ffffff;
+    /* Texto blanco */
     border: none;
     border-radius: 6px;
     font-size: 0.95rem;
     font-weight: 500;
-    cursor: pointer;           /* Cambia el cursor a una mano haciendo clic */
+    cursor: pointer;
+    /* Cambia el cursor a una mano haciendo clic */
     transition: background-color 0.2s ease;
 }
 
@@ -212,4 +216,15 @@ button:hover {
 /* El botón se vuelve aún más oscuro justo en el momento en que lo presionamos */
 button:active {
     background-color: #3730a3;
+}
+
+/* ==========================================================================
+   SUBTÍTULOS INTERNOS: Estilos para textos aclaratorios de datos simulados
+   ========================================================================== */
+h3 {
+    color: #475569;
+    /* Color gris azulado oscuro */
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
