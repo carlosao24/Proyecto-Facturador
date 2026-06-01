@@ -11,15 +11,11 @@ function calcularSubtotal() {
     document.getElementById("mensajeSubtotal").innerHTML = "Subtotal: " + subtotal.toFixed(2);
 }
 
-// Función para calcular los impuestos y totales finales de la factura
+// Función para calcular el IVA 
 function calcularIVA(){
     let iva = 15; // El porcentaje del iva normal es 15%
-    let subTotal = recuperarFloat("idSubTotal");
+    let subTotal = recuperarFloat("idSubTotal"); // Extraigo el valor ingresado en caja
     let ivaSubTotal;
-    let total;
-    // Si es un cliente común, el iva se calcula con el 15% original
-    ivaSubTotal = (subTotal * iva) / 100;
-    total = subTotal + ivaSubTotal;
-    document.getElementById("mensajeIVA").innerHTML = "El iva es de: " + ivaSubTotal.toFixed(2);
-    document.getElementById("mensajeTotal").innerHTML = "El total es de: " + total.toFixed(2);
+    ivaSubTotal = (subTotal * iva) / 100; // Realizo la operacion
+    document.getElementById("mensajeIVA").innerHTML = "El iva es de: " + ivaSubTotal.toFixed(2); // Muestro el resultado
 }
