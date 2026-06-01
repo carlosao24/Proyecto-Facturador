@@ -39,12 +39,14 @@ function calificarTest() {
     let pregunta1 = document.getElementById("pregunta1-respuesta2").checked; // Cantidad x Precio Unitario
     let pregunta2 = document.getElementById("pregunta2-respuesta2").checked; // 1 Cliente puede tener N Facturas
     let pregunta3 = document.getElementById("pregunta3-respuesta3").checked; // Formato XML
+    let pregunta4 = document.getElementById("pregunta4-respuesta1").checked; // Valor bruto antes de impuestos
+    let pregunta5 = document.getElementById("pregunta5-respuesta3").checked; // Subtotal + IVA - Descuentos
+
 
     // NOTA DE JAVASCRIPT (.checked):
     // La propiedad '.checked' sirve para saber si un checkbox está marcado o no.
     // - Si el usuario selecciono el correcto, devuelve: true
     // - Si el usuario selecciono el incorrecto, devuelve: false
-
     // 3. Evaluamos cada respuesta con condicionales simples
     if (pregunta1 === true) {
         nota = nota + 2;
@@ -53,6 +55,12 @@ function calificarTest() {
         nota = nota + 2;
     }
     if (pregunta3 === true) {
+        nota = nota + 2;
+    }
+    if (pregunta4 === true) {
+        nota = nota + 2;
+    }
+    if (pregunta5 === true) {
         nota = nota + 2;
     }
 

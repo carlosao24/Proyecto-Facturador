@@ -241,3 +241,103 @@ span[id^="mensaje"] {
     display: inline-block;
     /* Permite aplicar márgenes de manera correcta */
 }
+
+/* ==========================================================================
+   ESTILOS EXCLUSIVOS PARA EL TEST DE EVALUACIÓN (#idtest)
+   ========================================================================== */
+
+/* Contenedor de cada pregunta para separarlas limpiamente */
+#idtest article {
+    background-color: #f8fafc;
+    /* Gris muy claro para diferenciar la pregunta del fondo */
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+/* Título o enunciado de la pregunta */
+#idtest article p strong {
+    color: #1e1b4b;
+    /* Azul marino oscuro de tus títulos */
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* Forzamos a que los divs dentro de las preguntas mantengan el checkbox y el texto juntos a la izquierda */
+#idtest article div {
+    display: flex !important;
+    flex-direction: row !important;
+    /* Mantiene el flujo horizontal (fila) */
+    justify-content: flex-start !important;
+    /* Alinea todo a la izquierda pegado a la caja */
+    align-items: center !important;
+    /* Centra verticalmente el cuadro con el texto */
+    gap: 10px !important;
+    /* Espacio exacto de separación */
+    margin: 0 !important;
+    padding: 6px 0 !important;
+}
+
+/* Estilo visual para las respuestas de texto */
+#idtest article label {
+    color: #333333;
+    /* Tu color principal de texto */
+    font-size: 0.95rem;
+    cursor: pointer;
+    /* Mano al pasar por encima del texto */
+    user-select: none;
+    /* Evita que el texto se sombree azul por error al hacer clics rápidos */
+}
+
+/* Cambia el color del texto cuando el usuario pasa el mouse sobre la opción */
+#idtest article div:hover label {
+    color: #4f46e5;
+    /* Cambia al morado/azul de tus botones */
+}
+
+/* Estilo para los inputs tipo checkbox dentro del test */
+#idtest input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: none !important;
+    /* Elimina restricciones de ancho del CSS global */
+    margin: 0 !important;
+    cursor: pointer;
+    accent-color: #4f46e5;
+    /* Hace que el visto/palomita use tu color morado automáticamente */
+}
+
+/* Línea divisoria interna */
+#idtest hr {
+    border: 0;
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 20px 0;
+}
+
+/* Contenedor final donde se muestra el puntaje */
+#idtest div:last-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Deja el botón a la izquierda y la nota a la derecha */
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Texto de "Tu puntuación es:" */
+#idtest div:last-of-type p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e1b4b;
+}
+
+/* Número de la calificación final (el span) */
+#calificacion {
+    color: #059669;
+    /* Verde de éxito que usas en tus mensajes */
+    font-size: 1.2rem;
+}
