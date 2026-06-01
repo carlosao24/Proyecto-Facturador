@@ -29,3 +29,33 @@ function calcularTotal() {
     let total = subTotal + ivaSubTotal; // Sumo el subtotal y el iva para obtener el total
     document.getElementById("mensajeTotal").innerHTML = "El total es de: " + total.toFixed(2); // Muestro el resultado
 }
+
+
+// 1. Creamos una variable para llevar la cuenta de las respuestas correctas
+function calificarTest() {
+    let nota = 0;
+
+    // 2. Obtenemos el estado de los checkboxes correctos por su ID
+    let pregunta1 = document.getElementById("pregunta1-respuesta2").checked; // Cantidad x Precio Unitario
+    let pregunta2 = document.getElementById("pregunta2-respuesta2").checked; // 1 Cliente puede tener N Facturas
+    let pregunta3 = document.getElementById("pregunta3-respuesta3").checked; // Formato XML
+
+    // NOTA DE JAVASCRIPT (.checked):
+    // La propiedad '.checked' sirve para saber si un checkbox está marcado o no.
+    // - Si el usuario selecciono el correcto, devuelve: true
+    // - Si el usuario selecciono el incorrecto, devuelve: false
+
+    // 3. Evaluamos cada respuesta con condicionales simples
+    if (pregunta1 === true) {
+        nota = nota + 2;
+    }
+    if (pregunta2 === true) {
+        nota = nota + 2;
+    }
+    if (pregunta3 === true) {
+        nota = nota + 2;
+    }
+
+    // 4. Mostramos el resultado final dentro del span de calificación (Base 10)
+    document.getElementById("calificacion").innerHTML = nota + " / 10";
+}
