@@ -1,5 +1,5 @@
 // Función para calcular el precio total multiplicando precio por cantidad
-function calcularPrecioTotal(){
+function calcularPrecioTotal() {
     // Guardamos los valores que el usuario escribió en los cuadros de texto
     let precioUnitario = recuperarFloat("precioUnitario");
     let cantidad = recuperarInt("cantidad");
@@ -10,3 +10,4 @@ function calcularPrecioTotal(){
     // Mostramos el resultado en la pantalla dentro del espacio con id 'mensaje1'
     document.getElementById("mensajeProducto").innerHTML = "precioTotal: " + precioTotal.toFixed(2);
 }
+
