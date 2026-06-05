@@ -46,7 +46,7 @@
         <p>dirección y correo en el encabezado de la factura.</p>
         <div>
             Fórmula:
-            Cliente --> Puede tener N Facturas
+            Cliente puede tener muchas Facturas
         </div>
     </section>
 
@@ -140,15 +140,15 @@
             <p><strong>1. ¿Cuál es la fórmula correcta para calcular el Valor de un Producto individual en el detalle de
                     una venta?</strong></p>
             <div>
-                <input type="checkbox" id="pregunta1-respuesta1">
+                <input type="radio" id="pregunta1-respuesta1" name="pregunta1">
                 <label for="pregunta1-respuesta1">Valor del Producto = Cantidad + Precio Unitario</label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta1-respuesta2">
+                <input type="radio" id="pregunta1-respuesta2" name="pregunta1">
                 <label for="pregunta1-respuesta2">Valor del Producto = Cantidad x Precio Unitario</label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta1-respuesta3">
+                <input type="radio" id="pregunta1-respuesta3" name="pregunta1">
                 <label for="pregunta1-respuesta3">Valor del Producto = Cantidad / Precio Unitario</label>
             </div>
         </article>
@@ -159,15 +159,15 @@
             <p><strong>2. Desde la perspectiva lógica de un sistema, ¿cuál es la relación que tiene un Cliente con las
                     Facturas?</strong></p>
             <div>
-                <input type="checkbox" id="pregunta2-respuesta1">
+                <input type="radio" id="pregunta2-respuesta1" name="pregunta2">
                 <label for="pregunta2-respuesta1">1 Cliente puede tener 1 sola Factura en todo el sistema</label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta2-respuesta2">
+                <input type="radio" id="pregunta2-respuesta2" name="pregunta2">
                 <label for="pregunta2-respuesta2">1 Cliente puede tener muchas Facturas</label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta2-respuesta3">
+                <input type="radio" id="pregunta2-respuesta3" name="pregunta2">
                 <label for="pregunta2-respuesta3">Muchos clientes pueden tener 1 sola Factura</label>
             </div>
         </article>
@@ -178,55 +178,60 @@
             <p><strong>3. ¿En qué formato estructurado suele generarse el archivo de una Factura Electrónica antes de
                     ser firmado y enviado al servidor tributario?</strong></p>
             <div>
-                <input type="checkbox" id="pregunta3-respuesta1">
+                <input type="radio" id="pregunta3-respuesta1" name="pregunta3">
                 <label for="pregunta3-respuesta1">Formato MP3</label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta3-respuesta2">
+                <input type="radio" id="pregunta3-respuesta2" name="pregunta3">
                 <label for="pregunta3-respuesta2">Formato PDF</label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta3-respuesta3">
+                <input type="radio" id="pregunta3-respuesta3" name="pregunta3">
                 <label for="pregunta3-respuesta3">Formato XML</label>
             </div>
         </article>
 
+        <br>
+
         <article>
             <p><strong>4. ¿Qué representa el Subtotal en una estructura de cobro?</strong></p>
             <div>
-                <input type="checkbox" id="pregunta4-respuesta1">
+                <input type="radio" id="pregunta4-respuesta1" name="pregunta4">
                 <label for="pregunta4-respuesta1">El valor bruto de la
                     venta antes de aplicar impuestos o descuentos</label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta4-respuesta2">
+                <input type="radio" id="pregunta4-respuesta2" name="pregunta4">
                 <label for="pregunta4-respuesta2">El dinero total que
                     se le devuelve al cliente como cambio</label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta4-respuesta3">
+                <input type="radio" id="pregunta4-respuesta3" name="pregunta4">
                 <label for="pregunta4-respuesta3">El valor final con
                     los impuestos ya incluidos
                 </label>
             </div>
-        </article><br>
+        </article>
+
+        <br>
+        
         <article>
             <p><strong>5. ¿Cuál es la fórmula correcta para determinar el monto definitivo del Total a pagar?</strong>
             </p>
             <div>
-                <input type="checkbox" id="pregunta5-respuesta1">
+                <input type="radio" id="pregunta5-respuesta1" name="pregunta5">
                 <label for="pregunta5-respuesta1">Total = Subtotal x
                     Valor del IVA
                 </label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta5-respuesta2">
+                <input type="radio" id="pregunta5-respuesta2" name="pregunta5">
                 <label for="pregunta5-respuesta2">Total = Subtotal -
                     Valor del IVA
                 </label>
             </div>
             <div>
-                <input type="checkbox" id="pregunta5-respuesta3">
+                <input type="radio" id="pregunta5-respuesta3" name="pregunta5">
                 <label for="pregunta5-respuesta3">Total = Subtotal +
                     Valor del IVA - Descuentos (si aplican)
                 </label>
