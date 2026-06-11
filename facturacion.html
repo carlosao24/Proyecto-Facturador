@@ -15,6 +15,25 @@
         <span>Sucursal: calle primera y Av. segunda</span>
     </header>
 
+    <section id="datosCliente">
+        <label>Cedula:</label>
+        <input type="text" name="Cedula" id="cedula">
+        <span id="mensajeCedula"></span>
+
+        <label>Cliente:</label>
+        <input type="text" name="Cliente" id="nombre">
+        <span id="mensajeNombre"></span>
+
+        <label>Telefono:</label>
+        <input type="text" name="Telefono" id="telefono">
+        <span id="mensajeTelefono"></span>
+
+        <br>
+        <button onclick="guardarDatosCliente()">Cargar Cliente</button>
+        <span id="estadoCliente"></span>
+    </section>
+
+
     <footer id="piePagina">
         <h2>Desarollado por DualC Developers</h2>
     </footer>
@@ -22,4 +41,5 @@
     <script src="JS/facturacion.js"></script>
     <script src="JS/utilitarios.js"></script>
 </body>
+
 </html>

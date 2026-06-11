@@ -1,0 +1,165 @@
+/* ==========================================================================
+   ESTILOS EMPRESARIALES - SIMULADOR DE FACTURACIÓN
+   Diseño: Limpio, Corporativo, Profesional y Educativo
+   ========================================================================== */
+
+/* 1. Variables Globales (Buenas prácticas para un aprendizaje ordenado) */
+:root {
+    --primary-color: #1e293b;
+    /* Azul pizarra oscuro (Seriedad y elegancia) */
+    --accent-color: #0284c7;
+    /* Azul corporativo activo */
+    --bg-main: #f8fafc;
+    /* Fondo gris ultra-claro y limpio */
+    --bg-card: #ffffff;
+    /* Fondo de contenedores (Blanco puro) */
+    --text-main: #334155;
+    /* Texto principal suave pero legible */
+    --text-muted: #64748b;
+    /* Texto secundario o etiquetas */
+    --border-color: #e2e8f0;
+    /* Bordes sutiles y limpios */
+    --radius: 8px;
+    /* Bordes redondeados modernos */
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --transition: all 0.25s ease;
+}
+
+/* 2. Reseteo Base (Fácil de entender para estudiantes: consistencia de cajas) */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 30px 15px;
+}
+
+/* 3. Estructura y Contenedores (Layout Lineal Limpio) */
+#infoEmpresa,
+#datosCliente,
+#datosProducto,
+#piePagina {
+    max-width: 900px;
+    margin: 0 auto 24px auto;
+    /* Centrado horizontal con separación inferior */
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+/* 4. Encabezado de la Empresa (Header Corporativo) */
+#infoEmpresa {
+    display: table;
+    /* Excelente alternativa compatible para estructurar sin flex pesado */
+    width: 100%;
+    border-top: 5px solid var(--primary-color);
+    /* Acento de marca empresarial */
+}
+
+#infoEmpresa img {
+    max-height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+#infoEmpresa h2 {
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+#infoEmpresa span {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* 5. Formularios Limpios (Secciones de Cliente y Producto) */
+#datosCliente,
+#datosProducto {
+    padding-top: 28px;
+}
+
+/* Títulos implícitos u organización visual */
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    margin-top: 12px;
+}
+
+/* Ajuste para que las etiquetas no se amontonen */
+label:first-of-type {
+    margin-top: 0;
+}
+
+/* Entradas de texto modernas e intuitivas */
+input[type="text"],
+input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 4px;
+    transition: var(--transition);
+}
+
+/* Efecto Focus: Clave para interactividad pro */
+input[type="text"]:focus,
+input[type="datetime-local"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+/* 6. Botones Profesionales (Estilo Call-To-Action Corporativo) */
+button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    transition: var(--transition);
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+}
+
+button:hover {
+    background-color: #026ca3;
+    /* Oscurece un poco en hover */
+    transform: translateY(-1px);
+    /* Efecto sutil de elevación */
+    box-shadow: 0 4px 8px rgba(2, 132, 199, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
