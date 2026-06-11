@@ -8,14 +8,49 @@
     <link rel="stylesheet" href="css/facturacion.css">
 </head>
 
-<body>
+<body onload="iniciar()">
     <header id="infoEmpresa">
         <img src="img/" alt="logoEmpresa">
         <h2>Carlos Asociados</h2>
         <span>Sucursal: calle primera y Av. segunda</span>
+        <br>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="facturacion.html">Facturación</a>
+        </nav>
     </header>
 
-    <section id="datosCliente">
+    <br>
+
+    <div>
+        <button onclick="mostrarSeccion('idSeccionClientes')">Tabla de clientes</button>
+        <button onclick="mostrarSeccion('registroFactura')">Servicio de Factura</button>
+        <button onclick="mostrarSeccion('factura')">Factura</button>
+    </div>
+
+    <section id="idSeccionClientes">
+        <h2>Tabla de Clientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cedula</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                </tr>
+            </thead>
+            <tbody id="tablaClientes">
+
+            </tbody>
+        </table>
+    </section>
+
+    <br>
+
+    <section id="registroFactura">
+        <h2>Datos del Cliente</h2>
+
+        <br>
+
         <label>Cedula:</label>
         <input type="text" name="Cedula" id="cedula">
         <span id="mensajeCedula"></span>
@@ -31,8 +66,57 @@
         <br>
         <button onclick="guardarDatosCliente()">Cargar Cliente</button>
         <span id="estadoCliente"></span>
+
+        <br>
+
+        <h2>Servicios</h2>
+        <div>
+            <div>
+                <p>tramitesAduana</p>
+            </div>
+            <br>
+            <div>
+                <p>corteDeGuia</p>
+            </div>
+            <br>    
+            <div>
+                <p>reembolsoGastos</p>
+            </div>
+        </div>
+        <br>
+        <label>Nombre de servicio:</label>
+        <input type="text" id="servicio">
+        <span id="mensajeServicio"></span>
+        <label>Cantidad:</label>
+        <input type="number" id="cantidad">
+        <span id="mensajeCantidad"></span>
+        <br>
+        <button onclick="agregarServicio()">Ingresar Producto</button>
+        <br>
+        <!--Productos--->
+        <table>
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Descripcion</th>
+                    <th>PrecioUnitario</th>
+                    <th>PrecioTotal</th>
+                </tr>
+            </thead>
+            <tbody id="tablaServicios">
+
+                <!--Aqui va la tabla de los productos--->
+
+            </tbody>
+
+        </table>
     </section>
 
+    <br>
+
+    <section id="factura">
+
+    </section>
 
     <footer id="piePagina">
         <h2>Desarollado por DualC Developers</h2>

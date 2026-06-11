@@ -1,9 +1,9 @@
 // Arreglo de empleados con los cuales podremos realizar las validaciones
 let empleados = [
-    { idEmpleado: 123 },
-    { idEmpleado: 456 },
-    { idEmpleado: 789 },
-    { idEmpleado: 111 }
+    { idEmpleado: 123 , nombre: "Pepe"},
+    { idEmpleado: 456 , nombre: "Julio"},
+    { idEmpleado: 789 , nombre: "Erika"},
+    { idEmpleado: 111 , nombre: "Emily"}
 ]
 // Funcion la cual permite validar las credenciales del empleado
 // Si la validacion es verdadera, tendra acceso al facturador

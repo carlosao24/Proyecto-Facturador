@@ -163,3 +163,83 @@ button:hover {
 button:active {
     transform: translateY(0);
 }
+
+/*Secciones ocultas*/
+section {
+    display: none;
+}
+
+/*Secciones activas*/
+section.activa {
+    display: block;
+}
+
+/* 7. Tabla de Productos Corporativa (Diseño Limpio y Legible) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 12px 16px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+th:first-child {
+    border-top-left-radius: 6px;
+}
+
+th:last-child {
+    border-top-right-radius: 6px;
+}
+
+td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+/* Filas alternas (Zebra striping) para cuando se inserten datos dinámicamente */
+tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tbody tr:hover {
+    background-color: #f1f5f9; /* Destaca la fila bajo el cursor */
+}
+
+/* Mensaje cuando la tabla esté vacía (por si se agrega por JS o como placeholder) */
+#tablaProductos:empty::after {
+    content: "No hay productos ingresados en la factura.";
+    display: block;
+    padding: 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* 8. Pie de Página (Identidad del Equipo de Desarrollo) */
+#piePagina {
+    text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin-top: 40px;
+    padding: 0;
+}
+
+#piePagina h2 {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
