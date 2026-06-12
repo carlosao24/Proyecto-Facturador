@@ -1,8 +1,3 @@
-/* ==========================================================================
-   ESTILOS EMPRESARIALES - SIMULADOR DE FACTURACIÓN
-   Diseño: Limpio, Corporativo, Profesional y Educativo
-   ========================================================================== */
-
 /* 1. Variables Globales (Buenas prácticas para un aprendizaje ordenado) */
 :root {
     --primary-color: #1e293b;
@@ -42,10 +37,11 @@ body {
     padding: 30px 15px;
 }
 
-/* 3. Estructura y Contenedores (Layout Lineal Limpio) */
+/* 3. Estructura y Contenedores (Layout Lineal Limpio - Mismo estilo de cajón rectangular) */
 #infoEmpresa,
-#datosCliente,
-#datosProducto,
+#idSeccionClientes,
+#registroFactura,
+#factura,
 #piePagina {
     max-width: 900px;
     margin: 0 auto 24px auto;
@@ -57,15 +53,22 @@ body {
     box-shadow: var(--shadow);
 }
 
+/* Contenedor de botones principales alineados en fila y centrados */
+body > div:first-of-type {
+    max-width: 900px;
+    margin: 0 auto 24px auto;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
 /* 4. Encabezado de la Empresa (Header Corporativo) */
 #infoEmpresa {
-    display: table;
-    /* Excelente alternativa compatible para estructurar sin flex pesado */
-    width: 100%;
     border-top: 5px solid var(--primary-color);
     /* Acento de marca empresarial */
 }
 
+/* Contenedor superior del Header */
 #infoEmpresa img {
     max-height: 50px;
     display: inline-block;
@@ -89,13 +92,33 @@ body {
     font-style: italic;
 }
 
-/* 5. Formularios Limpios (Secciones de Cliente y Producto) */
-#datosCliente,
-#datosProducto {
-    padding-top: 28px;
+/* Estilos para la Navegación del Header */
+#infoEmpresa nav {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
 }
 
-/* Títulos implícitos u organización visual */
+#infoEmpresa nav a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-right: 20px;
+    transition: var(--transition);
+}
+
+#infoEmpresa nav a:hover {
+    color: var(--primary-color);
+}
+
+/* 5. Formularios Limpios y Subtítulos */
+h2 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
 label {
     display: block;
     font-size: 0.85rem;
@@ -107,13 +130,13 @@ label {
     margin-top: 12px;
 }
 
-/* Ajuste para que las etiquetas no se amontonen */
 label:first-of-type {
     margin-top: 0;
 }
 
-/* Entradas de texto modernas e intuitivas */
+/* Entradas de texto y números modernas e intuitivas */
 input[type="text"],
+input[type="number"],
 input[type="datetime-local"] {
     width: 100%;
     padding: 10px 14px;
@@ -126,12 +149,42 @@ input[type="datetime-local"] {
     transition: var(--transition);
 }
 
-/* Efecto Focus: Clave para interactividad pro */
 input[type="text"]:focus,
+input[type="number"]:focus,
 input[type="datetime-local"]:focus {
     outline: none;
     border-color: var(--accent-color);
     box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+/* Mensajes de validación JS */
+span[id^="mensaje"], #estadoCliente {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+/* Caja de bloques de Servicios en fila */
+#registroFactura > div:first-of-type {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Tarjetas individuales de servicios */
+#registroFactura > div:first-of-type > div {
+    flex: 1;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-main);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
 }
 
 /* 6. Botones Profesionales (Estilo Call-To-Action Corporativo) */
@@ -145,7 +198,7 @@ button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    margin-top: 16px;
+    margin-top: 10px;
     margin-bottom: 8px;
     transition: var(--transition);
     text-align: center;
@@ -154,14 +207,17 @@ button {
 
 button:hover {
     background-color: #026ca3;
-    /* Oscurece un poco en hover */
     transform: translateY(-1px);
-    /* Efecto sutil de elevación */
     box-shadow: 0 4px 8px rgba(2, 132, 199, 0.3);
 }
 
 button:active {
     transform: translateY(0);
+}
+
+div.botonFactura {
+    text-align: center;
+    margin-top: 20px;
 }
 
 /*Secciones ocultas*/
@@ -179,6 +235,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 24px;
+    margin-bottom: 15px;
     font-size: 0.95rem;
     text-align: left;
 }
@@ -207,18 +264,18 @@ td {
     color: var(--text-main);
 }
 
-/* Filas alternas (Zebra striping) para cuando se inserten datos dinámicamente */
 tbody tr:nth-child(even) {
     background-color: #f8fafc;
 }
 
 tbody tr:hover {
-    background-color: #f1f5f9; /* Destaca la fila bajo el cursor */
+    background-color: #f1f5f9;
 }
 
-/* Mensaje cuando la tabla esté vacía (por si se agrega por JS o como placeholder) */
-#tablaProductos:empty::after {
-    content: "No hay productos ingresados en la factura.";
+/* Placeholder para tablas vacías */
+#tablaServicios:empty::after,
+#tablaClientes:empty::after {
+    content: "No hay registros disponibles.";
     display: block;
     padding: 20px;
     text-align: center;

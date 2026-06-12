@@ -8,14 +8,23 @@ let empleados = [
 // Funcion la cual permite validar las credenciales del empleado
 // Si la validacion es verdadera, tendra acceso al facturador
 function validarEmpleado() {
-    let cedula = recuperarInt("idEmpleado") // Obtenemos el valor ingresado en caja
-    let elementoEmpleado // Variable donde almacenaremos momentaneamente cada objeto que este dentro de un arreglo
-    for (let i = 0; i < empleados.length; i++) { // Recorremos el arreglo empleados
-        elementoEmpleado = empleados[i] // le asignamos un objeto momentaneo de los objetos del arreglo empleados
-        if (elementoEmpleado.idEmpleado === cedula) { // Validamos si la credencias obtenida en caja es igual a las credenciales designadas
-            window.location.href = "../facturacion.html"// Si se cumple la condición el empleado tendra acceso al facturador
-        } else {
-            mostrarTexto("mensajeError", "ID de usuario inválido") // Caso contrario mostrara un error
-        }
+    let cedula = recuperarInt("idEmpleado"); 
+    let elementoEmpleado; 
+
+    for (let i = 0; i < empleados.length; i++) { 
+        elementoEmpleado = empleados[i]; 
+        
+        if (elementoEmpleado.idEmpleado === cedula) { 
+            // Tema nuevo, no se domina: Guardamos los datos en la memoria del navegador con un local Storage para usarlos en la factura
+            localStorage.setItem("idEmpleadoFactura", elementoEmpleado.idEmpleado); // Guardamos el ID del empleado
+            localStorage.setItem("nombreEmpleadoFactura", elementoEmpleado.nombre); // Guardamos el nombre del empleado
+
+            // Redireccionamos al facturador
+            window.location.href = "../facturacion.html";
+            return; // Rompe la función porque ya encontramos al empleado
+        } 
     }
+    
+    // Si terminó el ciclo y no encontró a nadie, recién ahí muestra el error
+    mostrarTexto("mensajeError", "ID de usuario inválido"); 
 }

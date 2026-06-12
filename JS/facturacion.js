@@ -186,16 +186,17 @@ function compararServicios(servicio) {
     return null; // Si no encuentra una coincidencia, devuelve null
 }
 
+// Función para mostrar el contenido del arreglo de productos agregados a la factura en una tabla HTML
 function mostrarTablaProductos() {
-    let elementoTabla = document.getElementById("tablaServicios");
+    let elementoTabla = document.getElementById("tablaServicios"); // Obtenemos el id desde el html
     let contenidoTabla = "";
     let totalFactura = 0;
 
-    for (let i = 0; i < productosFactura.length; i++) {
+    for (let i = 0; i < productosFactura.length; i++) { // Recorremos el arreglo de productos agregados a la factura
         let elementoServicio = productosFactura[i];
         let totalProducto = elementoServicio.costo * elementoServicio.cantidad; // calculamos el total de cada producto
-        totalFactura += totalProducto;
-
+        totalFactura += totalProducto; // Calculamos el total de la factura sumando el total de cada producto
+        // Mostramos cada producto agregado en una tabla con sus respectivos datos 
         contenidoTabla += `<tr>
             <td>${elementoServicio.cantidad}</td>
             <td>${elementoServicio.nombre}</td>
@@ -203,7 +204,7 @@ function mostrarTablaProductos() {
             <td>${totalProducto}</td>
         </tr>`;
     }
-
+    // Realizamos una validacion, si se cumple, mostramos el total de la factura
     if (productosFactura.length > 0) {
         contenidoTabla += `<tr>
             <td colspan="3"><strong>Total Factura</strong></td>
@@ -214,6 +215,76 @@ function mostrarTablaProductos() {
     elementoTabla.innerHTML = contenidoTabla;
 }
 
-function calcularTotalFactura(cantidadPorProducto) {
-    return cantidadPorProducto; // Esta función ya no se usa en la sumatoria interna
+// Funcion para mostrar la factura
+function mostrarFacturaFinal() {
+    // 1. Buscamos el cliente
+    let cedulaCliente = recuperaraTexto("cedula")
+    let cliente = VerificarCliente(cedulaCliente)
+
+    // Validamos que el cliente exista antes de mostrar la factura
+    if (cliente == null) {
+        mostrarTexto("estadoCliente", "Primero debe buscar o registrar un cliente válido.")
+        return;
+    }
+
+    // Tema nuevo, No se domina: Recuperamos los datos del empleado desde la memoria del navegador con ayuda de un (localStorage)
+    let idEmpleadoFactura = localStorage.getItem("idEmpleadoFactura")
+    let nombreEmpleadoFactura = localStorage.getItem("nombreEmpleadoFactura")
+
+    // Recuperamos el contenedor donde mostraremos la factura en nuestro html
+    let contenedorFactura = document.getElementById("contenidoFacturaFinal")
+    let contenidoHTML = ""
+    let totalFinal = 0
+
+    // Construimos el diseño de la factura con los datos correspondientes
+    // Usamos strong para hacer enfasis en lo mas importante
+    contenidoHTML += `
+        <h3>--- DATOS DE EMISIÓN ---</h3>
+        <p><strong>Emitido por:</strong> ${nombreEmpleadoFactura} (Código: ${idEmpleadoFactura})</p>
+        <br>
+        <h3>--- DATOS DEL CLIENTE ---</h3>
+        <p><strong>Cédula:</strong> ${cliente.cedula}</p>
+        <p><strong>Nombre:</strong> ${cliente.nombre}</p>
+        <p><strong>Teléfono:</strong> ${cliente.telefono}</p>
+        <br>
+        <h3>--- DETALLE DE FACTURACIÓN ---</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Descripción</th>
+                    <th>Precio Unitario</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    // 3. Recorremos los productos agregados
+    for (let i = 0; i < productosFactura.length; i++) {
+        let elementoServicio = productosFactura[i]
+        let subtotal = elementoServicio.costo * elementoServicio.cantidad
+        totalFinal = totalFinal + subtotal
+
+        contenidoHTML += `
+            <tr>
+                <td>${elementoServicio.cantidad}</td>
+                <td>${elementoServicio.nombre}</td>
+                <td>$${elementoServicio.costo}</td>
+                <td>$${subtotal}</td>
+            </tr>
+        `;
+    }
+
+    contenidoHTML += `
+                <tr>
+                    <td colspan="3" align="right"><strong>GRAN TOTAL A PAGAR:</strong></td>
+                    <td><strong>$${totalFinal}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    `;
+
+    contenedorFactura.innerHTML = contenidoHTML;
+    mostrarSeccion("factura");
 }
