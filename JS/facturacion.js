@@ -1,50 +1,65 @@
 // Arreglo de datos de clientes afiliados que cuentan con beneficios de descuento
 let clienteAfiliado = [
-    { cedula: "0932748948", nombre: "Ariel",   telefono: "0999888776"},
-    { cedula: "1208397266", nombre: "Alfredo", telefono: "0964928267"}
+    { cedula: "0932748948", nombre: "Ariel", telefono: "0999888776" },
+    { cedula: "1208397266", nombre: "Alfredo", telefono: "0964928267" }
 ];
 
 // Arreglo del catálogo de servicios ofrecidos y su costo base por unidad
 let servicios = [
-    { nombre: "tramitesAduana",  costo: 55 },
-    { nombre: "corteDeGuia",     costo: 80 },
+    { nombre: "tramitesAduana", costo: 55 },
+    { nombre: "corteDeGuia", costo: 80 },
     { nombre: "reembolsoGastos", costo: 25 }
 ];
 
 // Arreglo dinámico que guardará los objetos de los clientes procesados en el sistema
 let datosCliente = [
-    { cedula: "1725849301", nombre: "Miguel",  telefono: "0998765432"},
-    { cedula: "0928374615", nombre: "Ana",     telefono: "0984321098"},
-    { cedula: "1850639274", nombre: "Fatima",  telefono: "0976543210"},
-    { cedula: "0932748948", nombre: "Ariel",   telefono: "0999888776"},
-    { cedula: "1208397266", nombre: "Alfredo", telefono: "0964928267"}
+    { cedula: "1725849301", nombre: "Miguel", telefono: "0998765432" },
+    { cedula: "0928374615", nombre: "Ana", telefono: "0984321098" },
+    { cedula: "1850639274", nombre: "Fatima", telefono: "0976543210" },
+    { cedula: "0932748948", nombre: "Ariel", telefono: "0999888776" },
+    { cedula: "1208397266", nombre: "Alfredo", telefono: "0964928267" }
 ];
 
 let elementoDatoCliente; // Variable global para almacenar temporalmente el objeto cliente encontrado durante la verificación
 let productosFactura = []; // Arreglo dinámico para almacenar los productos agregados a la factura actual
+let iva = 0; // variable global para almacenar el iva ingresado
 
 function ocultarSeccion() {
-  let componente = document.getElementById("idSeccionClientes");
-  let listaClass = componente.classList;
-  listaClass.remove("activa");
+    let componente = document.getElementById("idSeccionClientes");
+    let listaClass = componente.classList;
+    listaClass.remove("activa");
 
-  let componente2 = document.getElementById("registroFactura");
-  let listaClass2 = componente2.classList;
-  listaClass2.remove("activa");
+    let componente2 = document.getElementById("registroFactura");
+    let listaClass2 = componente2.classList;
+    listaClass2.remove("activa");
 
-  let componente3 = document.getElementById("factura");
-  let listaClass3 = componente3.classList;
-  listaClass3.remove("activa");
+    let componente3 = document.getElementById("factura");
+    let listaClass3 = componente3.classList;
+    listaClass3.remove("activa");
+
+    let componente4 = document.getElementById("registroIva")
+    let listaClass4 = componente4.classList
+    listaClass4.remove("activa")
 }
 
 function mostrarSeccion(id) {
-  // 1. Escondemos todas primero
-  ocultarSeccion();
+    // 1. Escondemos todas primero
+    ocultarSeccion();
 
-  // 2. Mostramos solo la que el usuario presionó
-  let componente = document.getElementById(id);
-  let listaClass = componente.classList;
-  listaClass.add("activa");
+    // 2. Mostramos solo la que el usuario presionó
+    let componente = document.getElementById(id);
+    let listaClass = componente.classList;
+    listaClass.add("activa");
+}
+
+function agregarIva() {
+    let valor = recuperarInt("idIva")
+    if (valor != null && valor > 0 && valor <= 100) {
+        iva = valor
+        mostrarTexto("mensajeIva", "IVA agregado correctamente")
+    } else {
+        mostrarTexto("mensajeIva", "Ingrese un valor de IVA válido (entre 0 y 100).")
+    }
 }
 
 /**
@@ -112,7 +127,7 @@ function VerificarCliente(dato) { // Le paso el dato a verificar, en este caso l
 }
 
 // Funcion para mostrar los datos del cliente encontrado en el sistema.
-function mostrarDatosCliente(cliente) { 
+function mostrarDatosCliente(cliente) {
     if (cliente == null) { // Verifica si el cliente fue encontrado, si no rompe la ejecución de la función
         return;
     }
@@ -123,10 +138,10 @@ function mostrarDatosCliente(cliente) {
 }
 
 // Función para mostrar el contenido del arreglo de clientes registrados en una tabla HTML
-function mostrarTablaClientes(){
+function mostrarTablaClientes() {
     let tabla = document.getElementById("tablaClientes") // Obtiene el id desde el html
-    let contenidoTabla = " " 
-    for(let i = 0; i < datosCliente.length; i++){ // Recorre el arreglo de clientes registrados
+    let contenidoTabla = " "
+    for (let i = 0; i < datosCliente.length; i++) { // Recorre el arreglo de clientes registrados
         let elementoCliente = datosCliente[i]
         contenidoTabla += `
         <tr>
@@ -140,7 +155,7 @@ function mostrarTablaClientes(){
 }
 
 // Funcion para iniciar ciertas acciones al cargar la pagina
-function iniciar(){
+function iniciar() {
     mostrarTablaClientes()
     ocultarSeccion()
 }
@@ -223,9 +238,10 @@ function mostrarFacturaFinal() {
 
     // Validamos que el cliente exista antes de mostrar la factura
     if (cliente == null) {
-        mostrarTexto("estadoCliente", "Primero debe buscar o registrar un cliente válido.")
+        mostrarTexto("mensajeFactura", "Primero debe buscar o registrar un cliente válido.")
         return;
     }
+
 
     // Tema nuevo, No se domina: Recuperamos los datos del empleado desde la memoria del navegador con ayuda de un (localStorage)
     let idEmpleadoFactura = localStorage.getItem("idEmpleadoFactura")
@@ -234,7 +250,8 @@ function mostrarFacturaFinal() {
     // Recuperamos el contenedor donde mostraremos la factura en nuestro html
     let contenedorFactura = document.getElementById("contenidoFacturaFinal")
     let contenidoHTML = ""
-    let totalFinal = 0
+    let total = 0
+    let totalMasIva = 0
 
     // Construimos el diseño de la factura con los datos correspondientes
     // Usamos strong para hacer enfasis en lo mas importante
@@ -264,22 +281,35 @@ function mostrarFacturaFinal() {
     for (let i = 0; i < productosFactura.length; i++) {
         let elementoServicio = productosFactura[i]
         let subtotal = elementoServicio.costo * elementoServicio.cantidad
-        totalFinal = totalFinal + subtotal
+        total = total + subtotal
 
         contenidoHTML += `
             <tr>
                 <td>${elementoServicio.cantidad}</td>
                 <td>${elementoServicio.nombre}</td>
                 <td>$${elementoServicio.costo}</td>
-                <td>$${subtotal}</td>
+                <td>$${subtotal.toFixed(2)}</td>
             </tr>
         `;
     }
-
+    let resultadoAfiliado = validarAfiliado(cliente.cedula)
+    if (resultadoAfiliado) {
+        iva -= 3
+    }
+    let valorIva = (total * iva) / 100
+    totalMasIva = total + valorIva
     contenidoHTML += `
                 <tr>
-                    <td colspan="3" align="right"><strong>GRAN TOTAL A PAGAR:</strong></td>
-                    <td><strong>$${totalFinal}</strong></td>
+                    <td colspan="3" align="right"><strong>TOTAL:</strong></td>
+                    <td><strong>$${total.toFixed(2)}</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="right"><strong>IVA ${iva}%:</strong></td>
+                    <td><strong>$${valorIva.toFixed(2)}</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="right"><strong>TOTAL A PAGAR:</strong></td>
+                    <td><strong>$${totalMasIva.toFixed(2)}</strong></td>
                 </tr>
             </tbody>
         </table>
@@ -287,4 +317,15 @@ function mostrarFacturaFinal() {
 
     contenedorFactura.innerHTML = contenidoHTML;
     mostrarSeccion("factura");
+}
+
+function validarAfiliado(datoCedula) {
+    let estadoAfiliado = datoCedula
+    for (let i = 0; i < clienteAfiliado.length; i++) { // Recorre el arreglo de clientes afiliados
+        let elementoAfiliado = clienteAfiliado[i]; // Obtiene el objeto del cliente afiliado
+        if (datoCedula === elementoAfiliado.cedula) { // Verifica si la cédula ingresada coincide con la cédula de algún cliente afiliado
+            return true; // Si encuentra una coincidencia, devuelve true indicando que el cliente es afiliado
+        }
+    }
+    return false; // Si no encuentra una coincidencia, devuelve false indicando que el cliente no es afiliado
 }

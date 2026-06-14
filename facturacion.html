@@ -24,6 +24,7 @@
 
     <div>
         <button onclick="mostrarSeccion('idSeccionClientes')">Tabla de clientes</button>
+        <button onclick="mostrarSeccion('registroIva')">Registro del IVA</button>
         <button onclick="mostrarSeccion('registroFactura')">Servicio de Factura</button>
         <button onclick="mostrarSeccion('factura')">Factura</button>
     </div>
@@ -42,6 +43,16 @@
 
             </tbody>
         </table>
+    </section>
+
+    <br>
+
+    <section class="iva" id="registroIva">
+        <label>Ingresa el IVA</label>
+        <input type="number" name="Iva" id="idIva" placeholder="% IVA">
+        <span id="mensajeIva"></span>
+        <br>
+        <button onclick="agregarIva()">Guardar IVA</button>
     </section>
 
     <br>
@@ -72,15 +83,18 @@
         <h2>Servicios</h2>
         <div>
             <div>
-                <p>tramitesAduana</p>
+                <p>Servicio: tramitesAduana</p>
+                <p>Costo: $55</p>
             </div>
             <br>
             <div>
-                <p>corteDeGuia</p>
+                <p>Servicio: corteDeGuia</p>
+                <p>Costo: $85</p>
             </div>
-            <br>    
+            <br>
             <div>
-                <p>reembolsoGastos</p>
+                <p>Servicio: reembolsoGastos</p>
+                <p>Costo: $25</p>
             </div>
         </div>
         <br>
@@ -116,13 +130,14 @@
 
     <section id="factura">
         <div id="contenidoFacturaFinal">
-            
+
         </div>
     </section>
 
     <br>
 
     <div class="botonFactura">
+        <span id="mensajeFactura"></span>
         <button onclick="mostrarFacturaFinal()">Cargar Factura</button>
     </div>
 
