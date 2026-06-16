@@ -256,15 +256,16 @@ function mostrarFacturaFinal() {
     // Construimos el diseño de la factura con los datos correspondientes
     // Usamos strong para hacer enfasis en lo mas importante
     contenidoHTML += `
-        <h3>--- DATOS DE EMISIÓN ---</h3>
-        <p><strong>Emitido por:</strong> ${nombreEmpleadoFactura} (Código: ${idEmpleadoFactura})</p>
+        <h3>DATOS DE EMISIÓN</h3>
+        <p><strong>Emitido por:</strong> ${nombreEmpleadoFactura}</p>
+        <p><strong>Código de empleado:</strong> ${idEmpleadoFactura}</p>
         <br>
-        <h3>--- DATOS DEL CLIENTE ---</h3>
+        <h3>DATOS DEL CLIENTE</h3>
         <p><strong>Cédula:</strong> ${cliente.cedula}</p>
         <p><strong>Nombre:</strong> ${cliente.nombre}</p>
         <p><strong>Teléfono:</strong> ${cliente.telefono}</p>
         <br>
-        <h3>--- DETALLE DE FACTURACIÓN ---</h3>
+        <h3>DETALLE DE FACTURACIÓN</h3>
         <table border="1">
             <thead>
                 <tr>
@@ -292,20 +293,34 @@ function mostrarFacturaFinal() {
             </tr>
         `;
     }
-    let resultadoAfiliado = validarAfiliado(cliente.cedula)
-    if (resultadoAfiliado) {
-        iva -= 3
+    // Guardamos el IVA tal como fue agregado inicialmente (no mutamos la variable global)
+    let descuentoIva = 3;
+    let resultadoAfiliado = validarAfiliado(cliente.cedula);
+    let nuevoIva = 0
+    let nuevoValorIvaTotal = 0
+
+    // Valor de IVA antes de aplicar cualquier descuento de afiliado
+    let valorIvaTotal = (total * iva) / 100;
+
+    if(resultadoAfiliado == true){
+        nuevoIva = iva - descuentoIva
+        nuevoValorIvaTotal = (total * nuevoIva) / 100
     }
-    let valorIva = (total * iva) / 100
-    totalMasIva = total + valorIva
+
+    totalMasIva = total + nuevoValorIvaTotal
+
     contenidoHTML += `
                 <tr>
                     <td colspan="3" align="right"><strong>TOTAL:</strong></td>
                     <td><strong>$${total.toFixed(2)}</strong></td>
                 </tr>
                 <tr>
-                    <td colspan="3" align="right"><strong>IVA ${iva}%:</strong></td>
-                    <td><strong>$${valorIva.toFixed(2)}</strong></td>
+                    <td colspan="3" align="right"><strong>VALOR DEL IVA SIN DESCUENTO ${iva}%</strong></td>
+                    <td><strong>$${valorIvaTotal.toFixed(2)}</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="right"><strong>VALOR DEL IVA POR AFILIACION ${nuevoIva}%:</strong></td>
+                    <td><strong>$${nuevoValorIvaTotal.toFixed(2)}</strong></td>
                 </tr>
                 <tr>
                     <td colspan="3" align="right"><strong>TOTAL A PAGAR:</strong></td>
