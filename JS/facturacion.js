@@ -233,10 +233,10 @@ function mostrarTablaProductos() {
 // Funcion para mostrar la factura
 function mostrarFacturaFinal() {
     // 1. Buscamos el cliente
-    let cedulaCliente = recuperaraTexto("cedula")
-    let cliente = VerificarCliente(cedulaCliente)
+    let cedulaCliente = recuperaraTexto("cedula") // Recuperamos la cedula del cliente 
+    let cliente = VerificarCliente(cedulaCliente) // Verificamos si el cliente existe y guardamos el resultado en nuestra variable cliente 
 
-    // Validamos que el cliente exista antes de mostrar la factura
+    // Validamos que la respuesta guardada en la variable cliente exista y no sea nulo antes de mostrarlo en la factura
     if (cliente == null) {
         mostrarTexto("mensajeFactura", "Primero debe buscar o registrar un cliente válido.")
         return;
@@ -250,8 +250,8 @@ function mostrarFacturaFinal() {
     // Recuperamos el contenedor donde mostraremos la factura en nuestro html
     let contenedorFactura = document.getElementById("contenidoFacturaFinal")
     let contenidoHTML = ""
-    let total = 0
-    let totalMasIva = 0
+    let total = 0 // Variable donde guardamos la suma de el subtotal de todos los productos
+    let totalMasIva = 0 // Variable donde se guarda la suma entre el total y el valor del iva inicial 
 
     // Construimos el diseño de la factura con los datos correspondientes
     // Usamos strong para hacer enfasis en lo mas importante
@@ -278,14 +278,15 @@ function mostrarFacturaFinal() {
             <tbody>
     `;
 
-    // 3. Recorremos los productos agregados
+    // 3. Recorremos el arreglo de los servicios/productos agregados
     for (let i = 0; i < productosFactura.length; i++) {
-        let elementoServicio = productosFactura[i]
-        let subtotal = elementoServicio.costo * elementoServicio.cantidad
-        total = total + subtotal
+        let elementoServicio = productosFactura[i] // Guardamos uno por uno los objetos de dentro de nuestro arreglo en la variable elementoServicio
+        let subtotal = elementoServicio.costo * elementoServicio.cantidad // Calculamos el subtotal por producto
+        total = total + subtotal // Calculamos el total de la factura sin el iva
 
+        // Mostraremos los productos con sus respectivos detalles
         contenidoHTML += `
-            <tr>
+            <tr>+
                 <td>${elementoServicio.cantidad}</td>
                 <td>${elementoServicio.nombre}</td>
                 <td>$${elementoServicio.costo}</td>
@@ -293,22 +294,25 @@ function mostrarFacturaFinal() {
             </tr>
         `;
     }
-    // Guardamos el IVA tal como fue agregado inicialmente (no mutamos la variable global)
-    let descuentoIva = 3;
-    let resultadoAfiliado = validarAfiliado(cliente.cedula);
-    let nuevoIva = 0
-    let nuevoValorIvaTotal = 0
+    // Guardamos el IVA tal como fue agregado inicialmente
+    let descuentoIva = 3; // Variable donde almacenaremos el descuento que se le restara al iva por ser afiliado
+    let resultadoAfiliado = validarAfiliado(cliente.cedula); //Se llama a la funcion validarAfiliado pasandole la cedula del cliente y guardamos el resultado en la variable resultadoAfiliado
+    let nuevoIva = 0 // Variable donde almacenaremos la resta del iva ingresado con el descuento
+    let nuevoValorIvaTotal = 0 // Variable donde almacenare la multiplicacion del total por el nuevoIva
 
-    // Valor de IVA antes de aplicar cualquier descuento de afiliado
+    // Valor de IVA con respecto al total antes de aplicar cualquier descuento de afiliado
     let valorIvaTotal = (total * iva) / 100;
 
+    // Verificamos si es la afiliacion es verdadera
     if(resultadoAfiliado == true){
-        nuevoIva = iva - descuentoIva
-        nuevoValorIvaTotal = (total * nuevoIva) / 100
+        nuevoIva = iva - descuentoIva // Si es verdadero calculamos el nuevo iva que aplicaremos al total
+        nuevoValorIvaTotal = (total * nuevoIva) / 100 // Calculamos el nuevo valor del iva con respecto al total 
     }
 
+    // Calculamos el valor total sumando el total mas el nuevo valor del iva
     totalMasIva = total + nuevoValorIvaTotal
 
+    // Mostramos los valores de la factura
     contenidoHTML += `
                 <tr>
                     <td colspan="3" align="right"><strong>TOTAL:</strong></td>
@@ -334,8 +338,8 @@ function mostrarFacturaFinal() {
     mostrarSeccion("factura");
 }
 
+// Funcion que me permite verificar si un cliente esta afiliado
 function validarAfiliado(datoCedula) {
-    let estadoAfiliado = datoCedula
     for (let i = 0; i < clienteAfiliado.length; i++) { // Recorre el arreglo de clientes afiliados
         let elementoAfiliado = clienteAfiliado[i]; // Obtiene el objeto del cliente afiliado
         if (datoCedula === elementoAfiliado.cedula) { // Verifica si la cédula ingresada coincide con la cédula de algún cliente afiliado
