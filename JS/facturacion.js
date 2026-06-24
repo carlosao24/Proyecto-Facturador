@@ -232,6 +232,11 @@ function mostrarTablaProductos() {
 
 // Funcion para mostrar la factura
 function mostrarFacturaFinal() {
+    if(iva == null || iva == 0){
+        mostrarTexto("mensajeFactura", "Primero debe registrar un iva")
+        return
+    }
+
     // 1. Buscamos el cliente
     let cedulaCliente = recuperaraTexto("cedula") // Recuperamos la cedula del cliente 
     let cliente = VerificarCliente(cedulaCliente) // Verificamos si el cliente existe y guardamos el resultado en nuestra variable cliente 
