@@ -71,12 +71,46 @@ function guardarDatosCliente() {
     let cedula = recuperaraTexto("cedula");
 
     let clienteExistente = VerificarCliente(cedula);
+
+    // Uso de valor Truthy
+    // Comprende a todos los valores que no sean falsy o falso. Aqui Javascript los toma como valores true
+    // Los valores que comprenden a truthy son true, cualquier numero que sea diferente a 0, como 42, 3.56, -7, cadenas de texto incluyendo espacios vacios
+    // Incluso cadenas con un String "false", los objetos con sus propiedades incluyendo arreglos siempre seran verdaderos.
+    // ============================================================================
+    // CÓMO SE LEEN EN LOS CONDICIONALES (Mecánica de evaluación)
+    // ============================================================================
+
+    /*
+      1. Coerción Implícita de Tipo:
+      Cuando colocas cualquier valor dentro del paréntesis de un 'if (valor)', 
+      JavaScript no busca un booleano estricto. En su lugar, transforma 
+      temporalmente ese valor a booleano usando las reglas anteriores.
+    */
+
+    /*
+      2. Enfoque "Si existe / Si tiene contenido":
+      En la práctica, los condicionales se leen pensando en la existencia o validez del dato.
+      - if (string) se lee como: "Si la cadena tiene texto..."
+      - if (objeto) se lee como: "Si el objeto existe (no es null ni undefined)..."
+      - if (numero) se lee como: "Si el número es diferente de cero..."
+    */
+
+    /*
+      3. Comportamiento en cortocircuito (Operadores lógicos):
+      - Operador && (AND): Devuelve el primer valor falsy que encuentra. Si todos son truthy, devuelve el último.
+      - Operador || (OR): Devuelve el primer valor truthy que encuentra. Si todos son falsy, devuelve el último.
+    */
     if (clienteExistente) { // Si el cliente ya existe, muestra sus datos en la interfaz y notifica que ya está registrado
         mostrarDatosCliente(clienteExistente); // Muestra los datos del cliente encontrado en los campos correspondientes
         mostrarTexto("estadoCliente", "El cliente ya existe en el sistema"); // Devuelve un mensaje indicando que el cliente ya está registrado
         return;
     }
 
+    // Uso de valor Falsy
+    // Son todos los valores false en contexto booleano
+    // Los valores que comprenden a falsy son false, numero cero tanto negativo como positivo (0,-0), una cadena de texto vacia
+    // Valor null, undefined, Not a number(NaN)
+    // Ejemplo de aplicación, el condicional de abajo contiene if(!cedula)
     // Valida que la cédula cumpla estrictamente con la longitud requerida de 10 dígitos
     if (!cedula || cedula.length !== 10) {
         mostrarTexto("mensajeCedula", "La cédula debe tener 10 dígitos");
