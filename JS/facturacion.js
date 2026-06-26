@@ -52,6 +52,22 @@ function mostrarSeccion(id) {
     listaClass.add("activa");
 }
 
+function mostrarServicios (){
+    let tabla = document.getElementById("idServicios")
+    let contenido = ""
+    let objetoServicio 
+    for(let i = 0; i < servicios.length; i++){
+        objetoServicio = servicios[i]
+        contenido += `
+        <div>
+            <p>Servicio: ${objetoServicio.nombre}</p>
+            <p>Costo: ${objetoServicio.costo}</p>
+        </div>
+        `
+    }
+    tabla.innerHTML = contenido
+}
+
 function agregarIva() {
     let valor = recuperarInt("idIva")
     if (valor != null && valor > 0 && valor <= 100) {
@@ -192,6 +208,43 @@ function mostrarTablaClientes() {
 function iniciar() {
     mostrarTablaClientes()
     ocultarSeccion()
+    mostrarServicios()
+    // Mostrar inicialmente solo los campos para ingresar servicio
+    document.getElementById('costo').style.display = 'none'
+    document.getElementById('btnGuardarServicio').style.display = 'none'
+}
+
+function guardarServicio() {
+    let nomServicio = recuperaraTexto("servicio").trim(); // Obtenemos el dato ingresado en caja
+    if (!nomServicio) { // Validamos que el campo no esté vacío
+        mostrarTexto("mensajeServicio", "Campo obligatorio");
+        return;
+    }
+
+    let valorCosto = recuperarInt("costo") // Obtenemos el dato ingresado en caja 
+    if(!valorCosto){ // Validamos que el campo no esté vacío
+        mostrarTexto("mensajeCosto", "Ingrese un valor válido")
+        return
+    }
+
+    let nuevoServicio = {} // Creamos un nuevo objeto servicio donde asignaremos los valores obtenidos de caja
+    nuevoServicio.nombre = nomServicio,
+    nuevoServicio.costo = valorCosto
+
+    servicios.push(nuevoServicio) // Agregamos el nuevo objeto servicio a nuestro arreglo servicios
+    mostrarServicios() // Mostramos los servicios actualizados
+    
+    // Limpiar los campos
+    document.getElementById('servicio').value = '' 
+    document.getElementById('costo').value = ''
+    
+    // Ocultar campos de guardado y mostrar campos de ingreso
+    document.getElementById('costo').style.display = 'none'
+    document.getElementById('btnGuardarServicio').style.display = 'none'
+    document.getElementById('cantidad').style.display = 'block'
+    document.getElementById('btnIngresoServicio').style.display = 'block'
+    
+    mostrarTexto("mensajeServicio", "Servicio guardado correctamente")
 }
 
 // Funcion la cual me permite guardar los servicios solicitados
@@ -202,15 +255,22 @@ function agregarServicio() {
         return;
     }
 
-    let nomCantidad = recuperarInt("cantidad"); // Obtenemos el dato ingresado en caja
-    if (nomCantidad === null || isNaN(nomCantidad) || nomCantidad <= 0) { // Validamos la cantidad
-        mostrarTexto("mensajeCantidad", "Debe ingresar una cantidad válida.");
+    let servicioEncontrado = compararServicios(nomServicio); // Comparamos el servicio ingresado con el catálogo
+    if (servicioEncontrado === null) {
+        // Si el servicio no existe, mostrar los campos para crear uno nuevo
+        mostrarTexto("mensajeServicio", "El servicio ingresado no se encuentra en el catálogo. Ingrese el costo para crear un nuevo servicio.");
+        
+        // Ocultar campos de ingreso de cantidad y mostrar campos de guardado
+        document.getElementById('cantidad').style.display = 'none'
+        document.getElementById('btnIngresoServicio').style.display = 'none'
+        document.getElementById('costo').style.display = 'block'
+        document.getElementById('btnGuardarServicio').style.display = 'block'
         return;
     }
 
-    let servicioEncontrado = compararServicios(nomServicio); // Comparamos el servicio ingresado con el catálogo
-    if (servicioEncontrado === null) {
-        mostrarTexto("mensajeServicio", "El servicio ingresado no se encuentra en el catálogo.");
+    let nomCantidad = recuperarInt("cantidad"); // Obtenemos el dato ingresado en caja
+    if (nomCantidad === null || isNaN(nomCantidad) || nomCantidad <= 0) { // Validamos la cantidad
+        mostrarTexto("mensajeCantidad", "Debe ingresar una cantidad válida.");
         return;
     }
 
@@ -222,6 +282,11 @@ function agregarServicio() {
 
     productosFactura.push(servicioAgregado); // Agregamos el producto válido al arreglo de la factura
     mostrarTablaProductos(); // Mostramos la tabla actualizada
+    
+    // Limpiar los campos después de agregar exitosamente
+    document.getElementById('servicio').value = ''
+    document.getElementById('cantidad').value = ''
+    mostrarTexto("mensajeServicio", "Servicio agregado a la factura")
 }
 
 // Funcion para comparar el servicio ingresado con los servicios que se ofrecen

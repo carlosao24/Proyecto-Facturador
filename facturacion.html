@@ -81,31 +81,22 @@
         <br>
 
         <h2>Servicios</h2>
-        <div>
-            <div>
-                <p>Servicio: tramitesAduana</p>
-                <p>Costo: $55</p>
-            </div>
-            <br>
-            <div>
-                <p>Servicio: corteDeGuia</p>
-                <p>Costo: $85</p>
-            </div>
-            <br>
-            <div>
-                <p>Servicio: reembolsoGastos</p>
-                <p>Costo: $25</p>
-            </div>
+        <div id="idServicios">
+            
         </div>
         <br>
         <label>Nombre de servicio:</label>
         <input type="text" id="servicio">
         <span id="mensajeServicio"></span>
+        <label>Costo de servicio:</label>
+        <input type="text" id="costo">
+        <span id="mensajeCosto"></span>
         <label>Cantidad:</label>
         <input type="number" id="cantidad">
         <span id="mensajeCantidad"></span>
         <br>
-        <button onclick="agregarServicio()">Ingresar Producto</button>
+        <button id="btnIngresoServicio" onclick="agregarServicio()">Ingresar Servicio</button>
+        <button id="btnGuardarServicio" onclick="guardarServicio()" style="display:none;">Guardar Servicio</button>
         <br>
         <!--Productos--->
         <table>
